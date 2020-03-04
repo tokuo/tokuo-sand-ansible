@@ -1,1 +1,2 @@
-import_playbook: playbooks/dbservers.yml
+---
+- import_playbook: playbooks/dbservers.yml

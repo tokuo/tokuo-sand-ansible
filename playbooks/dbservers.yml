@@ -1,1 +1,8 @@
-
+---
+- name: deploy MariaDB
+  hosts: db
+  become: yes
+  roles:
+    - roles/common-apt
+    - roles/mariadb
+    
