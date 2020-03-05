@@ -1,0 +1,4 @@
+mysql_logfile_path: /var/log/mysqld.log
+mysql_username: ubuntu
+# mysql_secure_initilize_query: >
+

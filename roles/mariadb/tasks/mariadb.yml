@@ -1,0 +1,26 @@
+---
+- name: apt install mariadb
+  apt:
+    pkg:
+    - mariadb-client
+    - mariadb-server
+
+- name: check logfile for idempotency
+  stat: path={{mysql_logfile_path}}
+  register: logfile_stat
+  changed_when: false
+
+- name: debug
+  debug: var=logfile_stat
+
+# - name: initialize insecure mysql
+#   command: mysqld --initialize-insecure --user={{mysql_username}}
+#   when: logfile_stat.stat.exists == false
+
+# - name: start mysql
+#   service: name=mysqld state=started enabled=yes
+#   when: logfile_stat.stat.exists == false
+
+# - name: setup security setting
+#   command: mysql -u root -e "{{mysql_secure_initilize_query}}"
+#   when: logfile_stat.stat.exists == false

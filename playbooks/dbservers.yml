@@ -1,8 +1,8 @@
 ---
+# roles execution order is not fixed
 - name: deploy MariaDB
   hosts: db
   become: yes
   roles:
-    - roles/common-apt
     - roles/mariadb
-    
+    - roles/sample_role

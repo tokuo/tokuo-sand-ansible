@@ -1,2 +1,6 @@
 ---
-- name: 
+- name: common tasks
+  include_tasks: common_apt.yml
+
+- name: mariadb tasks
+  include_tasks: mariadb.yml

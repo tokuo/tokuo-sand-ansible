@@ -1,0 +1,3 @@
+---
+- name: sample_task
+  command: /usr/bin/touch {{sample_var}}
