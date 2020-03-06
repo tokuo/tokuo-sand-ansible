@@ -1,0 +1,4 @@
+---
+- name: squid restart
+  command: squid -z && service squid restart
+  

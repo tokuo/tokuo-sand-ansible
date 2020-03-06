@@ -1,0 +1,9 @@
+---
+- name: apt install squid
+  apt:
+    pkg:
+    - squid
+
+- name: set setting file
+  copy: src=squid.conf dest=/etc/squid.conf owner=root group=root mode=0644
+  notify: squid restart

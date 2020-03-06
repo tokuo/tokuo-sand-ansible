@@ -1,0 +1,10 @@
+---
+- name: common tasks
+  include_tasks: common-apt.yml
+
+# - name: setup nginx
+#   include_tasks: nginx.yml
+
+- name: setup squid
+  include_tasks: squid.yml
+  
