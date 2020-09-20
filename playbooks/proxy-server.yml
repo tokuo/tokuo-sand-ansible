@@ -3,4 +3,5 @@
   hosts: proxy
   become: yes
   roles:
+    - roles/common
     - roles/proxy

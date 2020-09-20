@@ -4,5 +4,5 @@
   hosts: db
   become: yes
   roles:
+    - roles/common
     - roles/mariadb
-    - roles/sample_role

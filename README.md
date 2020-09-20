@@ -1,21 +1,40 @@
 # SETUP
 ## managed server side
-setup ssh public key authentication
+ssh公開鍵設定
 
 ## controle server side
-check if it is possible to access managed server
-`$ ansible -i inventories/dev/hosts db -m ping`
-`$ ansible -i inventories/dev/hosts db -a 'uname -a'`
+パスワード記述(passwd.yml)
+```
+ansible_sudo_pass: XXXXXX
+ansible_ssh_pass: XXXXXX
+```
+パスワード暗号化
+```
+ansible-vault encrypt passwd.yml
+```
+開通確認
+```
+$ ansible -i inventories/dev/hosts db -m ping
+ or
+$ ansible -i inventories/dev/hosts db -a 'uname -a' --ask-pass
+```
 
 
 # USE
-`$ ansible-playbook -i inventories/dev/hosts site.yml`
-
+```
+$ ansible-playbook -i inventories/dev/hosts site.yml
+```
 
 # File, Directory Detail
 ## .ansible.cfg
-Avoiding security risks with ansible.cfg in the current directory  
-https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg
+カレントディレクトリ上のcfgを利用する場合はセキュリティのため権限を適切に扱う必要がある。  
+https://docs.ansible.com/ansible/devel/reference_appendices/config.html#avoiding-security-risks-with-ansible-cfg-in-the-current-directory  
+
+適用順序  
+1. ANSIBLE_CONFIG (environment variable if set)
+2. ansible.cfg (in the current directory)
+3. ~/.ansible.cfg (in the home directory)
+4. /etc/ansible/ansible.cfg  
 
 ## site.yml, playbooks
 site.yml is msater playbook  

@@ -1,0 +1,6 @@
+---
+- name: common playbook
+  hosts: bastion
+  become: yes
+  roles:
+    - roles/common

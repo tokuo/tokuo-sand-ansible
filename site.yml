@@ -1,3 +1,4 @@
 ---
-# - import_playbook: playbooks/db-server.yml
-- import_playbook: playbooks/proxy-server.yml
+- import_playbook: playbooks/common-playbook.yml
+#- import_playbook: playbooks/proxy-server.yml
+#- import_playbook: playbooks/db-server.yml
