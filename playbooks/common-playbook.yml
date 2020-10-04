@@ -1,6 +1,12 @@
 ---
 - name: common playbook
-  hosts: bastion
-  become: yes
+  hosts: [bastion, main]
+  become: yes  # sudo権限付与
   roles:
     - roles/common
+
+#- name: docker playbook
+#  hosts: main
+#  become: yes
+#  roles:
+#    - roles/docker

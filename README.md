@@ -14,9 +14,9 @@ ansible-vault encrypt passwd.yml
 ```
 開通確認
 ```
-$ ansible -i inventories/dev/hosts db -m ping
- or
-$ ansible -i inventories/dev/hosts db -a 'uname -a' --ask-pass
+$ ansible -i inventories/dev/hosts bastion -m setup
+ パスワード認証でなければならない場合は場合は以下コマンド（非推奨）
+$ ansible -i inventories/dev/hosts XXXX -a 'uname -a' --ask-pass
 ```
 
 
@@ -46,7 +46,10 @@ this hierarchy represents a "inventory"
 ## roles
 this hierarchy represents a "role"  
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks.html
 
+## modules
+https://docs.ansible.com/ansible/2.9_ja/modules/list_of_all_modules.html#all-modules
 
 # Reference
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
