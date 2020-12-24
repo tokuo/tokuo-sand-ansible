@@ -21,13 +21,33 @@
       - gnupg-agent
       - software-properties-common
 
-- name: Add Docker’s official GPG key
+# Ubuntuの場合 - start
+- name: Add Docker’s official GPG key (Ubuntu)
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
+  when:
+    - ansible_facts["distribution"] == "Ubuntu"
 
-- name: Add apt repository
+- name: Add apt repository (Ubuntu)
   apt_repository:
     repo: "deb [arch=arm64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+  when:
+    - ansible_facts["distribution"] == "Ubuntu"
+# Ubuntuの場合 - end
+
+# Raspbian(32bit版)の場合 - start
+- name: Add Docker’s official GPG key (Raspbian)
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+  when:
+    - ansible_facts["distribution"] == "Debian"
+
+- name: Add apt repository (Raspbian)
+  apt_repository:
+    repo: "deb [arch=armhf] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+  when:
+    - ansible_facts["distribution"] == "Debian"
+# Raspbian(32bit版)の場合 - end
 
 - name: install docker engine
   apt:
@@ -37,5 +57,11 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+
+- name: install docker-compose
+  shell: curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+- name: add authority
+  shell: chmod +x /usr/local/bin/docker-compose
 
 # dockerユーザーの用意

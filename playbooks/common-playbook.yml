@@ -5,8 +5,9 @@
   roles:
     - roles/common
 
+# インストール済み
 #- name: docker playbook
-#  hosts: main
+#  hosts: [bastion, main]
 #  become: yes
 #  roles:
 #    - roles/docker

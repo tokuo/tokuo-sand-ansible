@@ -1,6 +1,7 @@
 # SETUP
 ## managed server side
-ssh公開鍵設定
+ssh公開鍵設定まで行う
+パスワード設定のみの場合、オプションを利用しなければ踏み台サーバ利用時やセキュリティ的に動作しない
 
 ## controle server side
 パスワード記述(passwd.yml)
@@ -10,7 +11,7 @@ ansible_ssh_pass: XXXXXX
 ```
 パスワード暗号化
 ```
-ansible-vault encrypt passwd.yml
+$ ansible-vault encrypt passwd.yml
 ```
 開通確認
 ```
@@ -45,11 +46,16 @@ this hierarchy represents a "inventory"
 
 ## roles
 this hierarchy represents a "role"  
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html  
 https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks.html
 
 ## modules
 https://docs.ansible.com/ansible/2.9_ja/modules/list_of_all_modules.html#all-modules
 
 # Reference
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html  
+
+pythonではなく、Python3を利用して実行する場合は以下の様に頭に付ける
+```
+$ python3 $(which ansible-playbook) ansible-playbook -i inventories/dev/hosts site.yml
+```
