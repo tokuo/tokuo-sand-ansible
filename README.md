@@ -4,12 +4,12 @@ ssh公開鍵設定まで行う
 パスワード設定のみの場合、オプションを利用しなければ踏み台サーバ利用時やセキュリティ的に動作しない
 
 ## controle server side
-パスワード記述(passwd.yml)
+機密情報の記述(passwd.yml)
 ```
 ansible_sudo_pass: XXXXXX
 ansible_ssh_pass: XXXXXX
 ```
-パスワード暗号化
+暗号化（ask_vault_pass=True と設定している場合は暗号時のパスワードを問われる）
 ```
 $ ansible-vault encrypt passwd.yml
 ```
@@ -28,7 +28,7 @@ $ ansible-playbook -i inventories/dev/hosts site.yml
 
 # File, Directory Detail
 ## .ansible.cfg
-カレントディレクトリ上のcfgを利用する場合はセキュリティのため権限を適切に扱う必要がある。  
+セキュリティのため権限管理を行う  
 https://docs.ansible.com/ansible/devel/reference_appendices/config.html#avoiding-security-risks-with-ansible-cfg-in-the-current-directory  
 
 適用順序  
